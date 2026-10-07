@@ -4,6 +4,7 @@ import SaleSys.SaleSys;
 import business.DiscountType;
 import business.exception.ApplicationException;
 import dataaccess.exception.PersistenceException;
+import dataaccess.rdgw.ProductRowDataGateway;
 import dbutils.SetupDatabase;
 import presentation.CustomerService;
 import presentation.SaleService;
@@ -25,6 +26,26 @@ public class SimpleClient {
             // --- 2. START THE APPLICATION SERVICES ---
             app.run();
             System.out.println("Application services started successfully.");
+
+            // TESTE DO ProductRowDataGateway
+            // Adicione este bloco em SimpleClient.java para testar a sua implementação
+            try {
+                System.out.println("A testar a sua implementação de ProductRowDataGateway...");
+
+                // Terá de criar um construtor público no seu ProductRowDataGateway
+                // para que a linha seguinte funcione!
+                ProductRowDataGateway newProduct = new ProductRowDataGateway(999, "O Meu Produto de Teste", 19.99, 50);
+                newProduct.insert();
+                System.out.println("Produto inserido com sucesso com o ID: " + newProduct.getProductId());
+
+                System.out.println("\nA procurar o produto com o código 999...");
+                ProductRowDataGateway foundProduct = ProductRowDataGateway.findWithProdCod(999);
+                System.out.println("Produto encontrado: " + foundProduct.getDescription());
+
+            } catch (PersistenceException e) {
+                System.err.println("Erro ao testar o ProductRowDataGateway!");
+                e.printStackTrace();
+            }
 
             // --- 3. REGISTER A SHUTDOWN HOOK ---
             // This code will run when the application is terminated (e.g., by Ctrl+C)

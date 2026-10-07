@@ -13,9 +13,9 @@ public enum DataSource {
 
     private Connection connection;
 
-    private static final String DB_URL = ""; //COMPLETAR
-    private static final String DB_USER = ""; //COMPLETAR
-    private static final String DB_PASSWORD = ""; //COMPLETAR
+    private static final String DB_URL = "jdbc:postgressql://pgsever:5432/postgres"; //COMPLETAR
+    private static final String DB_USER = "user"; //COMPLETAR
+    private static final String DB_PASSWORD = "password"; //COMPLETAR
     private static final int MAX_RETRIES = 5;
     private static final long RETRY_DELAY_MS = 3000;
 
